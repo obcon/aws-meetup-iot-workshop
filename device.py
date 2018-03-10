@@ -36,9 +36,9 @@ class Device:
     # ------------------------------------------------------------------------------------------------
 
     @classmethod
-    def publish(cls, value):
+    def publish(cls):
         payload = {
-            "value": value
+            "value": Device.get_random()
         }
         print("try to publish message for {} ...".format(cls.client_id))
         cls.mqtt_client.publish("device/{}".format(cls.client_id), json.dumps(payload), 1)
@@ -57,6 +57,13 @@ class Device:
 
     # ------------------------------------------------------------------------------------------------
 
+    @staticmethod
+    def get_random():
+        part = int(int(time.strftime("%H")) / 6)
+        return part * 30 + int(random.random() * 20)
+
+    # ------------------------------------------------------------------------------------------------
+
 
 if __name__ == "__main__":
 
@@ -66,7 +73,5 @@ if __name__ == "__main__":
 
     while True:
 
-        value = 50 + int(random.random() * 50)
-        Device.publish(value)
-
+        Device.publish()
         time.sleep(5)
