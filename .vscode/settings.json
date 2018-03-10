@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "${workspaceFolder}/.venv/bin/python",
+    "files.exclude": {
+        "**/.pytest_cache": true,
+        "**/._*": true,
+        "**/*~": true,
+        "**/_*": true,
+        "target": true,
+        ".venv": true,
+        ".vscode": true
+    }
+}
